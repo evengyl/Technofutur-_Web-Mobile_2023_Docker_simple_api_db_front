@@ -1,0 +1,21 @@
+version: "3.8"
+name: "my_project_mobile_2023"
+
+
+services:
+    api : 
+      container_name: "API_2023"
+
+    db : 
+      container_name: "DB_2023"
+
+    front :
+      container_name: "FRONT_2023"
+
+
+
+volumes:
+  dataDb:
+
+networks:
+  backend:
