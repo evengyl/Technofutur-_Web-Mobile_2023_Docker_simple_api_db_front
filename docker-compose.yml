@@ -39,6 +39,11 @@ services:
       restart: on-failure
       depends_on :
         - api
+      logging:
+        driver: "json-file"
+        options:
+          max-size: "50m"
+          max-file: "3"
 
 
 
