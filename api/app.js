@@ -1,23 +1,19 @@
 const express = require("express")
 const app = express()
 const mysql = require("mysql")
+const cors = require("cors")
 const port = process.env.PORT || 3000
 
 const connection = mysql.createPool({
     connectionLimit : 100,
     host : process.env.APP_MYSQL_HOST,
-    port : process.env.APP_MYSQL_PORT,
     user : process.env.APP_MYSQL_USER,
     password : process.env.APP_MYSQL_PASSWORD,
     database : process.env.APP_MYSQL_DATABASE
 })
 
+app.use(cors())
 
-
-connection.getConnection(function(err, connection) {
-    if (err) throw err; // not connected!
-  
-});
 
 app.get("/", (req, res, next) => {
     connection.query("select * from student", (err, rows) => {

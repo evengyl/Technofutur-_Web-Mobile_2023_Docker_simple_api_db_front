@@ -5,17 +5,35 @@ name: "my_project_mobile_2023"
 services:
     api : 
       container_name: "API_2023"
+      build : "./api"
+      env_file :
+        - ./.env
+      ports :
+        - "3001:3000"
+      networks : 
+        - backend_db
+
 
     db : 
       container_name: "DB_2023"
+      build : "./db"
+      env_file :
+        - ./.env
+      expose :
+        - "3306"
+      volumes :
+        - "./db/data:/var/lib/mysql"
+      networks : 
+        - backend_db
+     
 
     front :
       container_name: "FRONT_2023"
+      build : "./front"
+      ports :
+        - "80:80"
 
 
-
-volumes:
-  dataDb:
 
 networks:
-  backend:
+  backend_db:
