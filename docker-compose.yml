@@ -12,6 +12,9 @@ services:
         - "3001:3000"
       networks : 
         - backend_db
+      restart: on-failure
+      depends_on :
+        - db
 
 
     db : 
@@ -25,6 +28,7 @@ services:
         - "./db/data:/var/lib/mysql"
       networks : 
         - backend_db
+      restart: on-failure
      
 
     front :
@@ -32,6 +36,9 @@ services:
       build : "./front"
       ports :
         - "80:80"
+      restart: on-failure
+      depends_on :
+        - api
 
 
 
